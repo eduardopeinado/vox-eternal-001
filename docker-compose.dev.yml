@@ -1,0 +1,65 @@
+# docker-compose.dev.yml — entorno de desarrollo VOX-Eternal
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: vox-eternal-frontend-dev
+    working_dir: /app
+    # Montamos sólo el código, dejamos node_modules intacto en la imagen
+    volumes:
+      - ./:/app:delegated
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=development
+      - VOICEFIXER_URL=http://voicefixer_service:8000
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+    depends_on:
+      - voicefixer_service
+      - video_converter_service
+
+  voicefixer_service:
+    build:
+      context: ./voicefixer_service
+      dockerfile: Dockerfile
+    container_name: vox-eternal-voicefixer-dev
+    working_dir: /app
+    volumes:
+      - ./voicefixer_service:/app:delegated
+      - /app/.venv
+    command:
+      - uvicorn
+      - main:app
+      - --reload
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./voicefixer_service/.env
+
+  video_converter_service:
+    build:
+      context: ./video_converter_service
+      dockerfile: Dockerfile
+    container_name: vox-eternal-video-converter-dev
+    working_dir: /app
+    volumes:
+      - ./video_converter_service:/app:delegated
+      - /app/.venv
+    command:
+      - uvicorn
+      - main:app
+      - --reload
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+    ports:
+      - "8010:8000"

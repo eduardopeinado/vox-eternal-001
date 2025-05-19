@@ -1,0 +1,33 @@
+# Node dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+*.pid
+*.seed
+
+# MacOS
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-*
+
+# Environment files
+.env.local
+.env.*.local
+.env
+
+# Supabase branches & temp
+.branches
+.temp

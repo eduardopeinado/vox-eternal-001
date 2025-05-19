@@ -1,0 +1,22 @@
+services:
+  voicefixer_service:
+    build:
+      context: ./voicefixer_service
+      dockerfile: Dockerfile
+    container_name: voicefixer_service
+    restart: unless-stopped
+    env_file:
+      - ./voicefixer_service/.env
+    ports:
+      - "8000:8000"
+
+  video_converter_service:
+    build:
+      context: ./video_converter_service
+      dockerfile: Dockerfile
+    container_name: video_converter_service
+    restart: unless-stopped
+    # env_file:
+    #   - ./video_converter_service/.env
+    ports:
+      - "8010:8000"

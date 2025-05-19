@@ -1,0 +1,35 @@
+{
+  "name": "Vox Eternal Rules",
+  "version": "1.0.0",
+  "description": "Reglas del proyecto Vox Eternal para Login, Dashboard, y flujo de recuerdos.",
+  "rules": [
+    {
+      "id": "login-auth",
+      "description": "Usar Supabase Auth para login con email o Google. Sin requerir tarjeta de crédito. Mostrar pantalla simple y moderna para acceder."
+    },
+    {
+      "id": "dashboard-estructura",
+      "description": "El dashboard debe tener tres cards: Cápsulas, Mensajes al Futuro y Audios favoritos. Usar botón '+' flotante para subir recuerdos y crear cápsulas."
+    },
+    {
+      "id": "capsulas-ui",
+      "description": "Cada cápsula muestra título, imagen, fecha y cantidad de archivos. Permitir ordenar por fecha o nombre. Al entrar, permitir ver archivos, aplicar mejora IA, y borrar."
+    },
+    {
+      "id": "mejoras-ia",
+      "description": "Usar la API de Replicate para mejora de fotos. Mostrar 'Antes/Después'. No permitir descarga salvo usuarios con plan pagado y crédito disponible. Solo contar mejoras guardadas."
+    },
+    {
+      "id": "mensajes-programados",
+      "description": "Los usuarios pueden programar entregas futuras. Asociar fotos, videos o audios. Incluir mensaje, email del destinatario, fecha. Generar QR. Solo visible desde la fecha indicada. Enviar notificaciones 1 día antes al creador y al destinatario."
+    },
+    {
+      "id": "audios-favoritos",
+      "description": "Los audios favoritos pueden generar QR. Si no es plan ilimitado, limitar reproducciones por día. Mostrar alerta cuando el límite esté por alcanzarse."
+    },
+    {
+      "id": "ui-diseno",
+      "description": "Usar cards con bordes suaves y tipografía clara. Colores: #F4F2EB (fondo), #1E3A4F (texto), #D4AF37 (botones/acento), #A4DDEE (acento opcional). Usar layout responsivo y accesible."
+    }
+  ]
+}

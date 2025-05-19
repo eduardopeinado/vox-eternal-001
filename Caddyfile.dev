@@ -1,0 +1,10 @@
+http://localhost {
+    encode gzip
+
+    # APIs
+    reverse_proxy /api/voicefixer/*     voicefixer_service:8000
+    reverse_proxy /api/video-converter/* video_converter_service:8010
+
+    # Frontend
+    reverse_proxy /*                    frontend:3000
+}

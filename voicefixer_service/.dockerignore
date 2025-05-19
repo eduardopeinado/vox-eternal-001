@@ -1,0 +1,11 @@
+# 1) Ignorar todo por defecto
+*
+
+# 2) Pero permitir estos archivos clave:
+!Dockerfile
+!requirements.txt
+!main.py
+
+# 3) Excluir explícitamente cosas que no quieres en la imagen
+.env
+voicefixer_test.py

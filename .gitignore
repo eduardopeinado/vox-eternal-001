@@ -1,0 +1,36 @@
+# Dependencias y builds
+node_modules/
+dist/
+build/
+
+# Entornos virtuales y temporales
+.env
+__pycache__/
+*.pyc
+tmp/
+
+# Configuraciones locales
+.vscode/
+
+# Next.js build output
+.next/
+
+# Entorno virtual de Python
+.venv/
+
+# Archivos de audio de prueba
+cleaned_*.mp3
+cleaned_*.wav
+
+# Archivos de lock y logs
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+
+# Config adicional que no quieres versionar
+next.config.mjs
+.DS_Store
+
+# Ignorar carpetas y archivos pesados no necesarios
+docs/_legacy/
+video_converter_service/ffmpeg*

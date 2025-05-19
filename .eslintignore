@@ -1,0 +1,2 @@
+# Ignorar funciones Deno de Supabase para evitar errores de lint en Next.js/Node
+supabase/functions/

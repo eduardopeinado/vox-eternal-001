@@ -1,0 +1,11 @@
+-- Cambia el valor 'sent' a 'available' en el enum reminder_status y actualiza los registros existentes
+
+-- 1. Agregar el nuevo valor al enum
+alter type public.reminder_status add value if not exists 'available';
+
+-- 2. Actualizar los registros existentes
+update public.future_reminders set status = 'available' where status = 'sent';
+
+-- 3. (Opcional) Eliminar el valor antiguo 'sent' del enum (requiere recrear el tipo, no soportado directamente por Postgres)
+-- Si se desea limpiar el enum, se debe crear un nuevo tipo, migrar los datos y renombrar.
+-- Por ahora, solo se agrega 'available' y se actualizan los datos.

@@ -1,0 +1,18 @@
+# Redirige todo HTTP a HTTPS
+http://vox-eternal.com {
+    redir https://{host}{uri} permanent
+}
+
+# Define el sitio en HTTPS y habilita TLS automático
+https://vox-eternal.com {
+    encode gzip
+
+    # APIs
+    reverse_proxy /api/voicefixer/*     http://voicefixer_service:8000
+    reverse_proxy /api/video-converter/* http://video_converter_service:8010
+
+    # Frontend
+    reverse_proxy /*                    http://frontend:3000
+
+    # (TLS automático con Let's Encrypt)
+}

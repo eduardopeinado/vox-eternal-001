@@ -1,0 +1,21 @@
+node_modules
+.next
+out
+media
+*.mp4
+*.mov
+# No subas a la imagen de Docker:
+.git
+.vscode/
+.cline/
+docs/_legacy/
+
+# Variables de entorno — solo incluyes la producción explícitamente
+.env*
+!.env.production
+
+# Copias de seguridad “* 2” (por si hubiese alguna fuera de docs/_legacy)
+.env 2
+.next 2/
+.git 2/
+.cline 2/

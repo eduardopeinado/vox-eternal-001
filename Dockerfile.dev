@@ -1,0 +1,18 @@
+# Dockerfile.dev — entorno de desarrollo Next.js
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# 1. Copia defs de dependencias e instala
+COPY package*.json ./
+RUN npm ci
+
+# 2. Copia el resto del proyecto
+COPY . .
+
+# 3. Exponer puerto de dev
+EXPOSE 3000
+
+# 4. Arrancar Next.js en modo dev, escuchando en todas las interfaces
+CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
