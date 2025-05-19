@@ -23,7 +23,7 @@ cleaned_*.mp3
 cleaned_*.wav
 
 # Archivos de lock y logs
-package-lock.json
+# package-lock.json
 npm-debug.log*
 yarn-error.log*
 
