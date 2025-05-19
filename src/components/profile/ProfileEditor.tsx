@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { ArrowLeft, Upload, User as UserIcon } from "lucide-react";
 import type { UserProfile } from "../../types/friendship";
 import { useRouter, usePathname } from "next/navigation";
+import { useTour } from "@reactour/tour";
 import TourIcon from "../icons/TourIcon";
 
 interface ProfileEditorProps {
@@ -41,17 +42,17 @@ export function ProfileEditor({
 }: ProfileEditorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const { setIsOpen } = useTour();
   const pathname = usePathname();
 
   const handleTourClick = () => {
-    if (pathname !== "/dashboard") {
-      router.push("/dashboard");
-      // Esperar a que la navegación termine antes de disparar el tour
-      setTimeout(() => {
-        window.dispatchEvent(new Event("startTour"));
-      }, 500);
+    if (pathname === "/dashboard") {
+      setIsOpen(true);
     } else {
-      window.dispatchEvent(new Event("startTour"));
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("openTour", "true");
+      }
+      router.push("/dashboard");
     }
   };
 
