@@ -4,6 +4,7 @@ import type { UserProfile } from "../../types/friendship";
 import { useRouter, usePathname } from "next/navigation";
 import { useTour } from "@reactour/tour";
 import TourIcon from "../icons/TourIcon";
+import { supabase } from "../../lib/supabase/client";
 
 interface ProfileEditorProps {
   profile: UserProfile | null;
@@ -45,7 +46,21 @@ export function ProfileEditor({
   const { setIsOpen } = useTour();
   const pathname = usePathname();
 
-  const handleTourClick = () => {
+  const handleTourClick = async () => {
+    try {
+      if (profile?.id) {
+        const { error } = await supabase
+          .from("usuarios")
+          .update({ show_onboarding: true })
+          .eq("id", profile.id);
+        if (error) {
+          console.error("Error actualizando show_onboarding:", error);
+        }
+      }
+    } catch (err) {
+      console.error("Error inesperado al actualizar show_onboarding:", err);
+    }
+
     if (pathname === "/dashboard") {
       setIsOpen(true);
     } else {
