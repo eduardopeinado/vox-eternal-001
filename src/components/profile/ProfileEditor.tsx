@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { ArrowLeft, Upload, User as UserIcon } from "lucide-react";
 import type { UserProfile } from "../../types/friendship";
+import { useRouter, usePathname } from "next/navigation";
+import TourIcon from "../icons/TourIcon";
 
 interface ProfileEditorProps {
   profile: UserProfile | null;
@@ -38,6 +40,20 @@ export function ProfileEditor({
   onUpgradePlan,
 }: ProfileEditorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleTourClick = () => {
+    if (pathname !== "/dashboard") {
+      router.push("/dashboard");
+      // Esperar a que la navegación termine antes de disparar el tour
+      setTimeout(() => {
+        window.dispatchEvent(new Event("startTour"));
+      }, 500);
+    } else {
+      window.dispatchEvent(new Event("startTour"));
+    }
+  };
 
   return (
     <div className="max-w-xl mx-auto p-4">
@@ -213,16 +229,27 @@ export function ProfileEditor({
             <div>
               <span className="font-semibold">Email:</span> {profile.email}
             </div>
-            <div className="flex items-center gap-2">
-              <span>
-                <span className="font-semibold">Plan:</span> {activePlan || "No especificado"}
-              </span>
+            <div className="flex items-center">
+              <div className="plan-section flex items-center gap-2">
+                <span>
+                  <span className="font-semibold">Plan:</span> {activePlan || "No especificado"}
+                </span>
+                <button
+                  type="button"
+                  onClick={onUpgradePlan}
+                  className="px-3 py-1 bg-dorado-claro text-azul-profundo rounded hover:bg-yellow-400 transition-colors text-xs font-semibold"
+                >
+                  Mejorar plan
+                </button>
+              </div>
               <button
                 type="button"
-                onClick={onUpgradePlan}
-                className="ml-2 px-3 py-1 bg-dorado-claro text-azul-profundo rounded hover:bg-yellow-400 transition-colors text-xs font-semibold"
+                onClick={handleTourClick}
+                className="ml-auto flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-xs font-semibold"
+                title="Tour de la aplicación"
               >
-                Mejorar plan
+                <TourIcon size={18} className="mr-1" />
+                <span>Tour de la aplicación</span>
               </button>
             </div>
           </div>
