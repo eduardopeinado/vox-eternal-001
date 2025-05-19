@@ -34,3 +34,6 @@ next.config.mjs
 # Ignorar carpetas y archivos pesados no necesarios
 docs/_legacy/
 video_converter_service/ffmpeg*
+
+.env.local
+.env.production
