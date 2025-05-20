@@ -1,3 +1,4 @@
+
 # Dependencias y builds
 node_modules/
 dist/
@@ -11,29 +12,46 @@ tmp/
 
 # Configuraciones locales
 .vscode/
+.idea/
 
 # Next.js build output
 .next/
 
 # Entorno virtual de Python
-.venv/
+**/.venv*/
 
 # Archivos de audio de prueba
 cleaned_*.mp3
 cleaned_*.wav
 
 # Archivos de lock y logs
-# package-lock.json
 npm-debug.log*
 yarn-error.log*
+*.log
+*.dump
 
 # Config adicional que no quieres versionar
-# next.config.mjs
 .DS_Store
+# next.config.mjs
+
+# Variables de entorno locales y de producción
+.env.local
+.env.production
+
+# Ignorar cualquier artefacto de empaquetado pesado de Webpack
+**/*.pack
+
+# Ignorar librerías dinámicas grandes
+**/*.dylib
+**/*.so
+
+# Ignorar cachés adicionales
+.cache/
+
+# Ignorar carpetas de coverage
+coverage/
 
 # Ignorar carpetas y archivos pesados no necesarios
 docs/_legacy/
-video_converter_service/ffmpeg*
+video_converter_service/ffmpeg
 
-.env.local
-.env.production
