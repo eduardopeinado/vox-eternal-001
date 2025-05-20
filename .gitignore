@@ -28,7 +28,7 @@ npm-debug.log*
 yarn-error.log*
 
 # Config adicional que no quieres versionar
-next.config.mjs
+# next.config.mjs
 .DS_Store
 
 # Ignorar carpetas y archivos pesados no necesarios
